@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Deck
 {
-	public static ArrayList<String> create_deck()
+	private static ArrayList<String> create_deck()
 	{
 		ArrayList<String> deck = new ArrayList<String>();
 		String suits[] = {"Hearts", "Diamonds", "Clubs", "Spades"};
