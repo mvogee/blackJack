@@ -17,7 +17,7 @@ public class blackjack // dont know if this is needed
 			System.out.println(usr);
 			if (usr.toLowerCase().equals("y") || usr.toLowerCase().equals("yes"))
 			{
-				System.out.println("beggining game");
+				System.out.println("beginning game");
 				begin = true;
 			}
 			else if (usr.toLowerCase().equals("n") || usr.toLowerCase().equals("no"))
