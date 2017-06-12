@@ -1,19 +1,69 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.lang.Math;
 
 public class blackjack // dont know if this is needed
 {
+
+
+	public static void deal_start_cards(Deck deck,
+					ArrayList<String> playerDeck, ArrayList<String> dealerDeck)
+	{
+		int i;
+		int cardidx;
+		for (i = 0; i < 2; i++)
+		{
+			cardidx = (int)(Math.random() * deck.getTotalCards());
+			playerDeck.add(deck.getCard(cardidx));
+			deck.removeCard(cardidx);
+			deck.setTotalCards(deck.getTotalCards() - 1);
+		}
+		System.out.println(playerDeck);
+		for (i = 0; i < 2; i++)
+		{
+			cardidx = (int)(Math.random() * deck.getTotalCards());
+			dealerDeck.add(deck.getCard(cardidx));
+			deck.removeCard(cardidx);
+			deck.setTotalCards(deck.getTotalCards() - 1);
+		}
+		System.out.println(dealerDeck);
+	}
 
 	public static int beginGame()
 	{
 		Deck deck = new Deck();
 		ArrayList<String> playerDeck = new ArrayList<String>();
 		ArrayList<String> dealerDeck = new ArrayList<String>();
-		int playerTotal = 0;
-		int dealerTotal = 0;
-
+		Scanner userIn = new Scanner(System.in);
+		int bet = 0;
+		int insurance = 0;
 
 		System.out.println("beginning game");
+		//place bet;
+		System.out.print("How much would you like to bet?\n: ");
+		bet = userIn.nextInt();
+		System.out.println("You have placed an initial bet of $" + bet);
+		//give the player two cards and draw cards for the dealer
+		deal_start_cards(deck ,playerDeck, dealerDeck);
+		System.out.println("Your hand:\n" + playerDeck);
+		System.out.println("Dealers face up card\n" + dealerDeck.get(1));
+		if (dealerDeck.get(1).indexOf("Ace") != -1)
+		{
+			System.out.println("Insurrance is open. How much would you like to insure?\n Enter ammount: ");
+			insurance = userIn.nextInt();
+			if (insurance > bet / 2)
+			{
+				System.out.println("max insurance is 1/2 of your original bet");
+				insurance = bet / 2;
+			}
+		}
+		if (get_dealer_score() == -1);// make this. checks for dealer score. -1 is a blackjack
+		{
+			if (get_player_score() != -1) // make this. checks for players score. -1 is a blackjack
+				return ((bet * -1) + (insurance * 2));
+			// othersie we have a "Push" need to find out what this is.
+		}
+		play_game(); // at this point all the beginning setup is done and we can let the player play
 		return (1);
 	}
 

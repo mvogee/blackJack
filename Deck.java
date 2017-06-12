@@ -8,12 +8,10 @@ public class Deck
 		String suits[] = {"Hearts", "Diamonds", "Clubs", "Spades"};
 		String cards[] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven",
 							"Eight", "Nine", "Ten", "Jack", "Queen", "King"};
-	//	String fullCard = null;
 		for (int suit = 0; suit < 4; suit++)
 		{
 			for (int card = 0; card < 13; card++)
 			{
-				//fullCard = suits[suit] + cards[card];
 				deck.add(cards[card] + " of " + suits[suit]);
 			}
 		}
