@@ -1,3 +1,6 @@
+import java.lang.Math;
+import java.util.ArrayList;
+
 public class dealCards
 { // deal_start_cards might need to not be static
 	public static void deal_start_cards(Deck deck,

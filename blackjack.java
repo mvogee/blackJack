@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.lang.Math;
+//import java.lang.Math;
 
 public class blackjack
 {
@@ -32,13 +32,15 @@ public class blackjack
 				insurance = bet / 2;
 			}
 		}
-		if (get_dealer_score() == -1);// make this. checks for dealer score. -1 is a blackjack
+		System.out.println("dealer score: " + score.get_score(dealerDeck));
+		System.out.println("player score: " + score.get_score(playerDeck));
+		if (score.get_score(dealerDeck) == -1);
 		{
-			if (get_player_score() != -1) // make this. checks for players score. -1 is a blackjack
+			if (score.get_score(playerDeck) != -1) // make this. checks for players score. -1 is a blackjack
 				return ((bet * -1) + (insurance * 2));
 			// othersie we have a "Push" need to find out what this is.
 		}
-		play_game(); // at this point all the beginning setup is done and we can let the player play
+		//play_game(); // at this point all the beginning setup is done and we can let the player play
 		return (1);
 	}
 
