@@ -13,6 +13,7 @@ public class blackjack
 		Scanner userIn = new Scanner(System.in);
 		int bet = 0;
 		int insurance = 0;
+		int winnings = 0;
 
 		System.out.println("beginning game");
 		//place bet;
@@ -37,37 +38,40 @@ public class blackjack
 		System.out.println("Dealers face up card\n" + dealerDeck.get(1));
 		if (dealerDeck.get(1).indexOf("Ace") != -1)
 		{
-			System.out.println("Insurrance is open.");
+			System.out.println("\nInsurrance is open.");
 			while (true)
 			{
 				try
 				{
-					System.out.println("How much would you like to insure?\n: ");
+					System.out.print("How much would you like to insure?\n: ");
 					insurance = userIn.nextInt();
 					break ;
 				}
 				catch (InputMismatchException ime)
 				{
 					userIn.next();
-					System.out.println("please enter a whole number. if you would not like to insure enter 0\n");
+					System.out.println("Please enter a whole number. If you would not like to insure enter 0\n");
 				}
 			}
 			if (insurance > bet / 2)
 			{
-				System.out.println("max insurance is 1/2 of your original bet");
+				System.out.println("Max insurance is 1/2 of your original bet");
 				insurance = bet / 2;
 			}
 		}
 		System.out.println("dealer score: " + score.get_score(dealerDeck));
 		System.out.println("player score: " + score.get_score(playerDeck));
-		if (score.get_score(dealerDeck) == -1);
+		if (score.get_score(dealerDeck) == -1)
 		{
-			if (score.get_score(playerDeck) != -1) // make this. checks for players score. -1 is a blackjack
-				return ((bet * -1) + (insurance * 2));
-			// othersie we have a "Push" need to find out what this is.
+			if (score.get_score(playerDeck) != -1)
+				winnings += ((bet * -1) + (insurance * 2));
+			// othersie we have a "Push" which is all bets given back to player
+			else
+				winnings += insurance * 2;
+			return (winnings);
 		}
-		//play_game(); // at this point all the beginning setup is done and we can let the player play
-		return (1);
+		winnings += playGame.play_game(deck, playerDeck, dealerDeck, bet, insurance);
+		return (winnings);
 	}
 
 	public static void displayRules()
@@ -95,6 +99,8 @@ public class blackjack
 	{
 		int totalGames = 0;
 		int gamesWon = 0;
+		int totalWinnings = 0;
+		int gameWinnings = 0;
 		boolean playing = true;
 		Scanner userIn = new Scanner(System.in);
 		String usr;
@@ -107,8 +113,12 @@ public class blackjack
 			usr = userIn.nextLine();
 			if (usr.toLowerCase().equals("y") || usr.toLowerCase().equals("yes"))
 			{
-				gamesWon += beginGame();
+				gameWinnings = beginGame();
+				if (gameWinnings > 0)
+					gamesWon++;
+				totalWinnings += gameWinnings;
 				totalGames++;
+				System.out.println("Total Winnings $" + totalWinnings + "so far");
 			}
 			else if (usr.toLowerCase().equals("n") || usr.toLowerCase().equals("no"))
 				playing = false;
