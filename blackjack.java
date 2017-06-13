@@ -37,8 +37,21 @@ public class blackjack
 		System.out.println("Dealers face up card\n" + dealerDeck.get(1));
 		if (dealerDeck.get(1).indexOf("Ace") != -1)
 		{
-			System.out.println("Insurrance is open. How much would you like to insure?\n Enter ammount: ");
-			insurance = userIn.nextInt();
+			System.out.println("Insurrance is open.");
+			while (true)
+			{
+				try
+				{
+					System.out.println("How much would you like to insure?\n: ")
+					insurance = userIn.nextInt();
+					break ;
+				}
+				catch (InputMismatchException ime)
+				{
+					userIn.next();
+					System.out.println("please enter a whole number. if you would not like to insure enter 0\n")
+				}
+			}
 			if (insurance > bet / 2)
 			{
 				System.out.println("max insurance is 1/2 of your original bet");
