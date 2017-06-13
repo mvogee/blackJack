@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 //import java.lang.Math;
 
 public class blackjack
@@ -15,8 +16,20 @@ public class blackjack
 
 		System.out.println("beginning game");
 		//place bet;
-		System.out.print("How much would you like to bet?\n: ");
-		bet = userIn.nextInt();
+		while (true)
+		{
+			System.out.print("How much would you like to bet?\n: ");
+			try
+			{
+				bet = userIn.nextInt();
+				break ;
+			}
+			catch (InputMismatchException ime)
+			{
+				userIn.next();
+				System.out.println("please give a whole number ie: 250\n");
+			}
+		}
 		System.out.println("You have placed an initial bet of $" + bet);
 		//give the player two cards and draw cards for the dealer
 		dealCards.deal_start_cards(deck ,playerDeck, dealerDeck);
