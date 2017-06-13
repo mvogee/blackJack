@@ -2,33 +2,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.lang.Math;
 
-public class blackjack // dont know if this is needed
+public class blackjack
 {
-
-
-	public static void deal_start_cards(Deck deck,
-					ArrayList<String> playerDeck, ArrayList<String> dealerDeck)
-	{
-		int i;
-		int cardidx;
-		for (i = 0; i < 2; i++)
-		{
-			cardidx = (int)(Math.random() * deck.getTotalCards());
-			playerDeck.add(deck.getCard(cardidx));
-			deck.removeCard(cardidx);
-			deck.setTotalCards(deck.getTotalCards() - 1);
-		}
-		System.out.println(playerDeck);
-		for (i = 0; i < 2; i++)
-		{
-			cardidx = (int)(Math.random() * deck.getTotalCards());
-			dealerDeck.add(deck.getCard(cardidx));
-			deck.removeCard(cardidx);
-			deck.setTotalCards(deck.getTotalCards() - 1);
-		}
-		System.out.println(dealerDeck);
-	}
-
 	public static int beginGame()
 	{
 		Deck deck = new Deck();
@@ -44,7 +19,7 @@ public class blackjack // dont know if this is needed
 		bet = userIn.nextInt();
 		System.out.println("You have placed an initial bet of $" + bet);
 		//give the player two cards and draw cards for the dealer
-		deal_start_cards(deck ,playerDeck, dealerDeck);
+		dealCards.deal_start_cards(deck ,playerDeck, dealerDeck);
 		System.out.println("Your hand:\n" + playerDeck);
 		System.out.println("Dealers face up card\n" + dealerDeck.get(1));
 		if (dealerDeck.get(1).indexOf("Ace") != -1)
