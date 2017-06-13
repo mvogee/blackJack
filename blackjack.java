@@ -42,14 +42,14 @@ public class blackjack
 			{
 				try
 				{
-					System.out.println("How much would you like to insure?\n: ")
+					System.out.println("How much would you like to insure?\n: ");
 					insurance = userIn.nextInt();
 					break ;
 				}
 				catch (InputMismatchException ime)
 				{
 					userIn.next();
-					System.out.println("please enter a whole number. if you would not like to insure enter 0\n")
+					System.out.println("please enter a whole number. if you would not like to insure enter 0\n");
 				}
 			}
 			if (insurance > bet / 2)
