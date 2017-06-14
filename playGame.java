@@ -6,15 +6,16 @@ public class playGame
 	public static int play_game(Deck deck, ArrayList<String> playerDeck,
 					ArrayList<String> dealerDeck, int bet, int insurance)
 	{
-		String usr;
-		Scanner userIn = new Scanner(System.in);
-		boolean playing = true;
-		boolean surrender = false;
+		String	usr;
+		Scanner	userIn = new Scanner(System.in);
+		boolean	playing = true;
+		boolean	surrender = false;
+		int		winnings;
 
 		System.out.println("It is your turn.");
 		while (playing)
 		{
-			System.out.println("Options:\nStand\nHit\nDouble\nSplit\nSurrender\n");
+			System.out.println("Plays:\nStand\nHit\nDouble\nSplit\nSurrender\n");
 			usr = userIn.nextLine();
 			if (usr.toLowerCase().equals("stand"))
 				playing = false;
@@ -39,6 +40,6 @@ public class playGame
 		}
 		// play out the dealers turn
 		// check who wins
-		// return winnings
+		 return (winnings);
 	}
 }
