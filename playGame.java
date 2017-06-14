@@ -20,7 +20,11 @@ public class playGame
 			else if (usr.toLowerCase().equals("hit"))
 				dealCards.hit(deck, playerDeck);
 			else if (usr.toLowerCase().equals("double"))
-				player_double(); // create this. after a double the player is done
+			{
+				dealCards.hit(deck, playerDeck);
+				bet *= 2;
+				playing = false;
+			}
 			else if (usr.toLowerCase().equals("split"))
 				split(); // create this
 			else if (usr.toLowerCase().equals("surrender"))
