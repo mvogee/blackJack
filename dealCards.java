@@ -25,4 +25,12 @@ public class dealCards
 		}
 		System.out.println(dealerDeck);
 	}
+
+	public static void deal_singel_card(Deck deck, ArrayList<String> playerDeck)
+	{
+		int cardidx = (int)Math.random() * deck.getTotalCards();
+		playerDeck.add(deck.getCard(cardidx));
+		deck.removeCard(cardidx);
+		deck.setTotalCards(deck.getTotalCards() - 1);
+	}
 }

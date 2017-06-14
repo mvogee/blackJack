@@ -13,14 +13,14 @@ public class playGame
 		System.out.println("It is your turn.");
 		while (playing)
 		{
-			System.out.println("Options:\nStand\nHit\nDouble\nSplit\nSurrender");
+			System.out.println("Options:\nStand\nHit\nDouble\nSplit\nSurrender\n");
 			usr = userIn.nextLine();
 			if (usr.toLowerCase().equals("stand"))
 				playing = false;
 			else if (usr.toLowerCase().equals("hit"))
-				hit(); // create this
+				dealCards.hit(deck, playerDeck);
 			else if (usr.toLowerCase().equals("double"))
-				player_double(); // create this
+				player_double(); // create this. after a double the player is done
 			else if (usr.toLowerCase().equals("split"))
 				split(); // create this
 			else if (usr.toLowerCase().equals("surrender"))
