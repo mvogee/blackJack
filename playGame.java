@@ -16,7 +16,7 @@ public class playGame
 			System.out.println("Options:\nStand\nHit\nDouble\nSplit\nSurrender");
 			usr = userIn.nextLine();
 			if (usr.toLowerCase().equals("stand"))
-				stand(); // create this
+				playing = false;
 			else if (usr.toLowerCase().equals("hit"))
 				hit(); // create this
 			else if (usr.toLowerCase().equals("double"))
@@ -28,5 +28,8 @@ public class playGame
 			else
 				System.out.println("I dont understand that play");
 		}
+		// play out the dealers turn
+		// check who wins
+		// return winnings
 	}
 }
