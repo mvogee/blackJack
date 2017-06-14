@@ -8,7 +8,8 @@ public class playGame
 	{
 		String usr;
 		Scanner userIn = new Scanner(System.in);
-		boolean playig = true;
+		boolean playing = true;
+		boolean surrender = false;
 
 		System.out.println("It is your turn.");
 		while (playing)
@@ -28,7 +29,11 @@ public class playGame
 			else if (usr.toLowerCase().equals("split"))
 				split(); // create this
 			else if (usr.toLowerCase().equals("surrender"))
-				surrneder(); // creat this
+			{
+				winning = bet / 2 * -1;
+				playing = false;
+				surrender = true;
+			}
 			else
 				System.out.println("I dont understand that play");
 		}
