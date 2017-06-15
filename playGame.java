@@ -3,14 +3,14 @@ import java.util.Scanner;
 
 public class playGame
 {
-	public static int play_game(Deck deck, ArrayList<String> playerDeck,
+	public static int play_game(Deck deck, ArrayList<ArrayList<String>> playerHands,
 					ArrayList<String> dealerDeck, int bet, int insurance)
 	{
 		String	usr;
 		Scanner	userIn = new Scanner(System.in);
 		boolean	playing = true;
 		boolean	surrender = false;
-		int		winnings;
+		int		winnings = 0;
 
 		System.out.println("It is your turn.");
 		while (playing)
@@ -20,18 +20,18 @@ public class playGame
 			if (usr.toLowerCase().equals("stand"))
 				playing = false;
 			else if (usr.toLowerCase().equals("hit"))
-				dealCards.hit(deck, playerDeck);
+				dealCards.deal_singel_card(deck, playerHands.get(0));
 			else if (usr.toLowerCase().equals("double"))
 			{
-				dealCards.hit(deck, playerDeck);
+				dealCards.deal_singel_card(deck, playerHands.get(0));
 				bet *= 2;
 				playing = false;
 			}
-			else if (usr.toLowerCase().equals("split"))
-				split(); // create this
+			// else if (usr.toLowerCase().equals("split"))
+			// 	split();
 			else if (usr.toLowerCase().equals("surrender"))
 			{
-				winning = bet / 2 * -1;
+				winnings = bet / 2 * -1;
 				playing = false;
 				surrender = true;
 			}

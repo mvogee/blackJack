@@ -8,7 +8,9 @@ public class blackjack
 	public static int beginGame()
 	{
 		Deck deck = new Deck();
-		ArrayList<String> playerDeck = new ArrayList<String>();
+		ArrayList<ArrayList<String>> playerHands = new ArrayList<ArrayList<String>>();
+		playerHands.add(new ArrayList<String>());
+		// ArrayList<String> playerDeck = new ArrayList<String>();
 		ArrayList<String> dealerDeck = new ArrayList<String>();
 		Scanner userIn = new Scanner(System.in);
 		int bet = 0;
@@ -33,8 +35,8 @@ public class blackjack
 		}
 		System.out.println("You have placed an initial bet of $" + bet);
 		//give the player two cards and draw cards for the dealer
-		dealCards.deal_start_cards(deck ,playerDeck, dealerDeck);
-		System.out.println("Your hand:\n" + playerDeck);
+		dealCards.deal_start_cards(deck ,playerHands.get(0), dealerDeck);
+		System.out.println("Your hand:\n" + playerHands.get(0));
 		System.out.println("Dealers face up card\n" + dealerDeck.get(1));
 		if (dealerDeck.get(1).indexOf("Ace") != -1)
 		{
@@ -60,17 +62,17 @@ public class blackjack
 			}
 		}
 		System.out.println("dealer score: " + score.get_score(dealerDeck));
-		System.out.println("player score: " + score.get_score(playerDeck));
+		System.out.println("player score: " + score.get_score(playerHands.get(0)));
 		if (score.get_score(dealerDeck) == -1)
 		{
-			if (score.get_score(playerDeck) != -1)
+			if (score.get_score(playerHands.get(0)) != -1)
 				winnings += ((bet * -1) + (insurance * 2));
 			// othersie we have a "Push" which is all bets given back to player
 			else
 				winnings += insurance * 2;
 			return (winnings);
 		}
-		winnings += playGame.play_game(deck, playerDeck, dealerDeck, bet, insurance);
+		winnings += playGame.play_game(deck, playerHands, dealerDeck, bet, insurance);
 		return (winnings);
 	}
 
