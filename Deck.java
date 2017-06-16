@@ -25,9 +25,9 @@ public class Deck
 	{
 		return (totalCards);
 	}
-	public void setTotalCards(int totalCards)
+	public void setTotalCards(int setTotalCards)
 	{
-		totalCards = totalCards;
+		totalCards = setTotalCards;
 	}
 	public String getCard(int index)
 	{

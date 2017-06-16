@@ -4,16 +4,23 @@ import java.util.InputMismatchException;
 
 public class playGame
 {
-	public static boolean checkValidSplit(ArrayList<String> playerHands)
+	public static boolean checkValidSplit(ArrayList<String> playerHand)
 	{
-		if (score.cardValue())
+		String firstCard = playerHand.get(0).split(" ")[0];
+		String secondCard = playerHand.get(1).split(" ")[0];
+		if (firstCard == secondCard)
+			return (true);
+		else
+			return (false);
 	}
 
-	public static void split(Deck deck, ArrayList<ArrayList<String>> playerHands)
+	public static void splitHand(Deck deck, ArrayList<ArrayList<String>> playerHands)
 	{
-		int hand = 0;
-		Scanner usrIn = new Scanner(System.in);
-		if (playerHands.length() > 1 && playerHands.length() <= 4)
+		int hand = 1;
+		Scanner userIn = new Scanner(System.in);
+
+		System.out.println(playerHands.size());
+		if (playerHands.size() > 1 && playerHands.size() <= 4)
 		{
 			while (true)
 			{
@@ -21,26 +28,26 @@ public class playGame
 				{
 					System.out.println("which hand would you like to split?");
 					hand = userIn.nextInt();
-					if (hand > playerHands.length())
-						System.out.println("enter a hand 1 - " + playerHands.length());
+					if (hand > playerHands.size())
+						System.out.println("enter a hand 1 - " + playerHands.size());
 					else
 						break ;
 				}
 				catch (InputMismatchException ime)
 				{
-					System.out.println("enter a hand 1 - " + playerHands.length());
-					hand = userIn.next();
+					System.out.println("enter a hand 1 - " + playerHands.size());
+					hand = userIn.nextInt();
 				}
 			}
 		}
-		else if (playerHands.length() == 4)
+		else if (playerHands.size() == 4)
 		{
 			System.out.println("You can not have more than 4 hands.");
 			return ;
 		}
-		if (!checkValidSplit(playerHands.get(hand - 1));
+		if (!checkValidSplit(playerHands.get(hand - 1)))
 		{
-			System.out.pritln("That is not a valid hand to split")
+			System.out.println("That is not a valid hand to split");
 			return ;
 		}
 
@@ -71,7 +78,7 @@ public class playGame
 				playing = false;
 			}
 			else if (usr.toLowerCase().equals("split"))
-				split();
+				splitHand(deck, playerHands);
 			else if (usr.toLowerCase().equals("surrender"))
 			{
 				winnings = bet / 2 * -1;
@@ -80,6 +87,7 @@ public class playGame
 			}
 			else
 				System.out.println("I dont understand that play");
+			System.out.println("total cards in deck " + deck.getTotalCards());
 		}
 		// play out the dealers turn
 		// check who wins

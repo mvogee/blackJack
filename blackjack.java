@@ -36,6 +36,7 @@ public class blackjack
 		System.out.println("You have placed an initial bet of $" + bet);
 		//give the player two cards and draw cards for the dealer
 		dealCards.deal_start_cards(deck ,playerHands.get(0), dealerDeck);
+		System.out.println("after stard hadn" + deck.getTotalCards()); // remove this
 		System.out.println("Your hand:\n" + playerHands.get(0));
 		System.out.println("Dealers face up card\n" + dealerDeck.get(1));
 		if (dealerDeck.get(1).indexOf("Ace") != -1)
