@@ -1,8 +1,51 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class playGame
 {
+	public static boolean checkValidSplit(ArrayList<String> playerHands)
+	{
+		if (score.cardValue())
+	}
+
+	public static void split(Deck deck, ArrayList<ArrayList<String>> playerHands)
+	{
+		int hand = 0;
+		Scanner usrIn = new Scanner(System.in);
+		if (playerHands.length() > 1 && playerHands.length() <= 4)
+		{
+			while (true)
+			{
+				try
+				{
+					System.out.println("which hand would you like to split?");
+					hand = userIn.nextInt();
+					if (hand > playerHands.length())
+						System.out.println("enter a hand 1 - " + playerHands.length());
+					else
+						break ;
+				}
+				catch (InputMismatchException ime)
+				{
+					System.out.println("enter a hand 1 - " + playerHands.length());
+					hand = userIn.next();
+				}
+			}
+		}
+		else if (playerHands.length() == 4)
+		{
+			System.out.println("You can not have more than 4 hands.");
+			return ;
+		}
+		if (!checkValidSplit(playerHands.get(hand - 1));
+		{
+			System.out.pritln("That is not a valid hand to split")
+			return ;
+		}
+
+	}
+
 	public static int play_game(Deck deck, ArrayList<ArrayList<String>> playerHands,
 					ArrayList<String> dealerDeck, int bet, int insurance)
 	{
@@ -27,8 +70,8 @@ public class playGame
 				bet *= 2;
 				playing = false;
 			}
-			// else if (usr.toLowerCase().equals("split"))
-			// 	split();
+			else if (usr.toLowerCase().equals("split"))
+				split();
 			else if (usr.toLowerCase().equals("surrender"))
 			{
 				winnings = bet / 2 * -1;
