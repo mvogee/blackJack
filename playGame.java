@@ -8,7 +8,7 @@ public class playGame
 	{
 		String firstCard = playerHand.get(0).split(" ")[0];
 		String secondCard = playerHand.get(1).split(" ")[0];
-		if (firstCard == secondCard)
+		if (firstCard.equals(secondCard))
 			return (true);
 		else
 			return (false);
@@ -50,7 +50,14 @@ public class playGame
 			System.out.println("That is not a valid hand to split");
 			return ;
 		}
-
+		else
+		{
+			playerHands.add(new ArrayList<String>());
+			playerHands.get(playerHands.size() - 1).add(playerHands.get(hand - 1).get(1));
+			playerHands.get(hand - 1).remove(1);
+			dealCards.deal_singel_card(deck, playerHands.get(hand - 1));
+			dealCards.deal_singel_card(deck, playerHands.get(playerHands.size() - 1));
+		}
 	}
 
 	public static int play_game(Deck deck, ArrayList<ArrayList<String>> playerHands,
