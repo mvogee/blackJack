@@ -71,10 +71,17 @@ public class playGame
 		boolean splitable = true;
 
 		System.out.println("It is your turn.");
-		while (playing)
+		for (int i = 0; i < playerHands.size(); i++)
 		{
-			for (int i = 0; i < playerHands.size(); i++)
+			System.out.println("your hand(s)");
+			for (int k = 0; k < playerHands.size(); k++)
 			{
+				System.out.println("hand " + (k + 1) + ": " + playerHands.get(k));
+			}
+			System.out.println("playing for hand " + (i + 1));
+			while (playing)
+			{
+				System.out.println("playing hand: " + (i + 1) + playerHands.get(i));
 				System.out.println("Plays:\nStand\nHit\nDouble\nSplit\nSurrender\n");
 				usr = userIn.nextLine();
 				if (usr.toLowerCase().equals("stand"))
