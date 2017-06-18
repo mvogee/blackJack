@@ -5,6 +5,54 @@ import java.util.InputMismatchException;
 
 public class blackjack
 {
+	public static int placeBet()
+	{
+		Scanner userIn = new Scanner(System.in);
+		int bet = 0;
+		while (bet <= 0)
+		{
+			System.out.print("How much would you like to bet?\n: ");
+			try
+			{
+				bet = userIn.nextInt();
+			}
+			catch (InputMismatchException ime)
+			{
+				userIn.next();
+				System.out.println("please give a whole number ie: 250\n");
+			}
+		}
+		return (bet);
+	}
+
+	public static int placeInsurance(int bet)
+	{
+		Scanner userIn = new Scanner(System.in);
+		int insurance = 0;
+
+		System.out.println("\nInsurrance is open.");
+		while (true)
+		{
+			try
+			{
+				System.out.print("How much would you like to insure?\n: ");
+				insurance = userIn.nextInt();
+				break ;
+			}
+			catch (InputMismatchException ime)
+			{
+				userIn.next();
+				System.out.println("Please enter a whole number. If you would not like to insure enter 0\n");
+			}
+		}
+		if (insurance > bet / 2)
+		{
+			System.out.println("Max insurance is 1/2 of your original bet");
+			insurance = bet / 2;
+		}
+		return (insurance);
+	}
+
 	public static int beginGame()
 	{
 		Deck deck = new Deck();
@@ -19,20 +67,7 @@ public class blackjack
 
 		System.out.println("beginning game");
 		//place bet;
-		while (true)
-		{
-			System.out.print("How much would you like to bet?\n: ");
-			try
-			{
-				bet = userIn.nextInt();
-				break ;
-			}
-			catch (InputMismatchException ime)
-			{
-				userIn.next();
-				System.out.println("please give a whole number ie: 250\n");
-			}
-		}
+		bet = placeBet();
 		System.out.println("You have placed an initial bet of $" + bet);
 		//give the player two cards and draw cards for the dealer
 		dealCards.deal_start_cards(deck ,playerHands.get(0), dealerDeck);
@@ -41,26 +76,7 @@ public class blackjack
 		System.out.println("Dealers face up card\n" + dealerDeck.get(1));
 		if (dealerDeck.get(1).indexOf("Ace") != -1)
 		{
-			System.out.println("\nInsurrance is open.");
-			while (true)
-			{
-				try
-				{
-					System.out.print("How much would you like to insure?\n: ");
-					insurance = userIn.nextInt();
-					break ;
-				}
-				catch (InputMismatchException ime)
-				{
-					userIn.next();
-					System.out.println("Please enter a whole number. If you would not like to insure enter 0\n");
-				}
-			}
-			if (insurance > bet / 2)
-			{
-				System.out.println("Max insurance is 1/2 of your original bet");
-				insurance = bet / 2;
-			}
+			insurance = placeInsurance(bet);
 		}
 		System.out.println("dealer score: " + score.get_score(dealerDeck));
 		System.out.println("player score: " + score.get_score(playerHands.get(0)));
