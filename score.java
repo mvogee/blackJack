@@ -28,7 +28,8 @@ public class score
 
 	public static int checkBlackjack(ArrayList<String> deck)
 	{
-		if (cardValue(deck.get(0)) == 1 && cardValue(deck.get(1)) == 10)
+		if (cardValue(deck.get(0)) == 1 && cardValue(deck.get(1)) == 10 ||
+		cardValue(deck.get(1)) == 1 && cardValue(deck.get(0)) == 10)
 			return (1);
 		else
 			return (0);

@@ -65,54 +65,60 @@ public class playGame
 	{
 		String	usr;
 		Scanner	userIn = new Scanner(System.in);
-		boolean	playing = true;
+		//boolean	playing = true;
 		boolean	surrender = false;
 		int		winnings = 0;
 		boolean splitable = true;
-
+		ArrayList<ArrayList<String>> finalHands = new ArrayList<ArrayList<String>>();
+		int i = 0;
+		// I need to find a way to play turns for each hand and stop playing turns for hands that stand.
 		System.out.println("It is your turn.");
-		for (int i = 0; i < playerHands.size(); i++)
+		System.out.println("your hand(s)");
+		for (int k = 0; k < playerHands.size(); k++)
 		{
-			System.out.println("your hand(s)");
-			for (int k = 0; k < playerHands.size(); k++)
+			System.out.println("hand " + (k + 1) + ": " + playerHands.get(k));
+		}
+		System.out.println("playing for hand " + (i + 1));
+		while (playerHands.size() > 0)
+		{
+			if (i >= playerHands.size())
+				i = 0;
+			System.out.println("playing hand: " + (i + 1) + playerHands.get(i));
+			System.out.println("Plays:\nStand\nHit\nDouble\nSplit\nSurrender\n");
+			usr = userIn.nextLine();
+			if (usr.toLowerCase().equals("stand"))
 			{
-				System.out.println("hand " + (k + 1) + ": " + playerHands.get(k));
+				finalHands.add(playerHands.get(i));
+				playerHands.remove(i);
 			}
-			System.out.println("playing for hand " + (i + 1));
-			while (playing)
+			else if (usr.toLowerCase().equals("hit"))
 			{
-				System.out.println("playing hand: " + (i + 1) + playerHands.get(i));
-				System.out.println("Plays:\nStand\nHit\nDouble\nSplit\nSurrender\n");
-				usr = userIn.nextLine();
-				if (usr.toLowerCase().equals("stand"))
-					playing = false;
-				else if (usr.toLowerCase().equals("hit"))
-				{
-					dealCards.deal_singel_card(deck, playerHands.get(0));
-					splitable = false;
-				}
-				else if (usr.toLowerCase().equals("double"))
-				{
-					dealCards.deal_singel_card(deck, playerHands.get(0));
-					bet *= 2;
-					playing = false;
-				}
-				else if (usr.toLowerCase().equals("split"))
-				{
-					if (splitable == true)
-						splitHand(deck, playerHands);
-					else
-						System.out.println("you cannot split your hands after you have hit.");
-				}
-				else if (usr.toLowerCase().equals("surrender"))
-				{
-					winnings = bet / 2 * -1;
-					playing = false;
-					surrender = true;
-				}
+				dealCards.deal_singel_card(deck, playerHands.get(i));
+				splitable = false;
+			}
+			else if (usr.toLowerCase().equals("double"))
+			{
+				dealCards.deal_singel_card(deck, playerHands.get(i));
+				bet *= 2;
+				finalHands.add(playerHands.get(i));
+				playerHands.remove(i);
+			}
+			else if (usr.toLowerCase().equals("split"))
+			{
+				if (splitable == true)
+					splitHand(deck, playerHands);
 				else
-					System.out.println("I dont understand that play");
+					System.out.println("you cannot split your hands after you have hit.");
 			}
+			else if (usr.toLowerCase().equals("surrender"))
+			{
+				winnings = bet / 2 * -1;
+				playerHands.remove(i);
+				surrender = true;
+			}
+			else
+				System.out.println("I dont understand that play");
+			i++;
 		}
 		// play out the dealers turn
 		// check who wins
