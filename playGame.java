@@ -83,7 +83,7 @@ public class playGame
 			if (i >= playerHands.size())
 				i = 0;
 			System.out.println("\nplaying hand: " + (i + 1) + " " + playerHands.get(i));
-			Systme.out.println("current hand total: " + score.get_score(playerHands.get(i)));
+			System.out.println("current hand total: " + score.get_score(playerHands.get(i)));
 			System.out.println("Plays:\nStand\nHit\nDouble\nSplit\nSurrender\n");
 			usr = userIn.nextLine();
 			if (usr.toLowerCase().equals("stand"))
