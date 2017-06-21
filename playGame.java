@@ -94,14 +94,17 @@ public class playGame
 			else if (usr.toLowerCase().equals("hit"))
 			{
 				dealCards.deal_singel_card(deck, playerHands.get(i));
+				System.out.println("card dealt: " + playerHands.get(i).get(playerHands.get(i).size() - 1));
 				splitable = false;
 			}
 			else if (usr.toLowerCase().equals("double"))
 			{
 				dealCards.deal_singel_card(deck, playerHands.get(i));
+				System.out.println("card dealt: " + playerHands.get(i).get(playerHands.get(i).size() - 1));
 				bet *= 2;
 				finalHands.add(playerHands.get(i));
 				playerHands.remove(i);
+				splitable = false;
 			}
 			else if (usr.toLowerCase().equals("split"))
 			{
@@ -118,6 +121,11 @@ public class playGame
 			}
 			else
 				System.out.println("I dont understand that play");
+			if (playerHands.size() > i && score.get_score(playerHands.get(i)) > 21)
+			{
+				System.out.println("Busted!");
+				playerHands.remove(i);
+			}
 			i++;
 		}
 		// play out the dealers turn
