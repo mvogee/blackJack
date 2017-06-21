@@ -69,21 +69,21 @@ public class playGame
 		boolean	surrender = false;
 		int		winnings = 0;
 		boolean splitable = true;
+		// finalHands holds the no longer playing hands (stood hands).
 		ArrayList<ArrayList<String>> finalHands = new ArrayList<ArrayList<String>>();
 		int i = 0;
 		// I need to find a way to play turns for each hand and stop playing turns for hands that stand.
 		System.out.println("It is your turn.");
-		System.out.println("your hand(s)");
-		for (int k = 0; k < playerHands.size(); k++)
-		{
-			System.out.println("hand " + (k + 1) + ": " + playerHands.get(k));
-		}
-		System.out.println("playing for hand " + (i + 1));
 		while (playerHands.size() > 0)
 		{
+			for (int k = 0; k < playerHands.size(); k++)
+			{
+				System.out.println("hand " + (k + 1) + ": " + playerHands.get(k));
+			}
 			if (i >= playerHands.size())
 				i = 0;
-			System.out.println("playing hand: " + (i + 1) + playerHands.get(i));
+			System.out.println("\nplaying hand: " + (i + 1) + " " + playerHands.get(i));
+			Systme.out.println("current hand total: " + score.get_score(playerHands.get(i)));
 			System.out.println("Plays:\nStand\nHit\nDouble\nSplit\nSurrender\n");
 			usr = userIn.nextLine();
 			if (usr.toLowerCase().equals("stand"))
