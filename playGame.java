@@ -128,7 +128,7 @@ public class playGame
 			}
 			i++;
 		}
-		//playDealer() // make this
+		//playDealer(deck, dealerDeck) // make this
 		//winnings = get_winner(dealerDeck, playerHands, bet); // make this
 		 return (winnings);
 	}
