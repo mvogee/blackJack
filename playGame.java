@@ -109,7 +109,7 @@ public class playGame
 			else if (usr.toLowerCase().equals("split"))
 			{
 				if (splitable == true)
-					splitHand(deck, playerHands);
+					playGame.splitHand(deck, playerHands);
 				else
 					System.out.println("you cannot split your hands after you have hit.");
 			}
@@ -128,8 +128,8 @@ public class playGame
 			}
 			i++;
 		}
-		// play out the dealers turn
-		// check who wins
+		//playDealer() // make this
+		//winnings = get_winner(dealerDeck, playerHands, bet); // make this
 		 return (winnings);
 	}
 }
