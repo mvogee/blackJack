@@ -60,6 +60,27 @@ public class playGame
 		}
 	}
 
+	private static int get_winner(ArrayList<String> dealerDeck, ArrayList<ArrayList<String>> playerHands, int bet)
+	{
+		int dealerScore = score.get_score(dealerDeck);
+		int playerScore;
+
+		if (dealerScore == -1)
+			return (bet * -1);
+		if (dealerScore > 21)
+			return (bet * 2);
+		for (int i = 0; i < playerHands.size(); i++) // this is getting bypassed for some reason
+		{
+			playerScore = score.get_score(playerHands.get(i));
+			System.out.println(i + " hand score " + playerScore);
+			if (dealerScore < playerScore || playerScore == -1)
+			{
+				return (bet * 2);
+			}
+		}
+		return (bet * -1);
+	}
+
 	public static int play_game(Deck deck, ArrayList<ArrayList<String>> playerHands,
 					ArrayList<String> dealerDeck, int bet, int insurance)
 	{
@@ -128,8 +149,16 @@ public class playGame
 			}
 			i++;
 		}
-		//playDealer(deck, dealerDeck) // make this
-		//winnings = get_winner(dealerDeck, playerHands, bet); // make this
-		 return (winnings);
+		playDealer.playDealer(deck, dealerDeck);
+		winnings = get_winner(dealerDeck, finalHands, bet); // make this
+		if (winnings > 0)
+		{
+			System.out.println("you won!");
+		}
+		else
+		{
+			System.out.println("dealer wins with a score of " + score.get_score(dealerDeck));
+		}
+		return (winnings);
 	}
 }
